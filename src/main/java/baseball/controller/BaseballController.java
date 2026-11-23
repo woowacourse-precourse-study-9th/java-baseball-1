@@ -17,7 +17,14 @@ public class BaseballController {
 
     public void run() {
 
+        AnswerNumbers answerNumbers = createAnswerNumbers();
+
+    }
+
+    private AnswerNumbers createAnswerNumbers() {
+
         outputView.printStart();
-        AnswerNumbers answerNumbers = new AnswerNumbers();
+        return new AnswerNumbers();
+
     }
 }
