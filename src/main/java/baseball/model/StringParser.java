@@ -5,14 +5,22 @@ import java.util.List;
 
 public class StringParser {
 
+    public static final int NUMBERS_LENGTH = 3;
+
     public static List<Integer> parseIntegers(String input){
 
         List<Integer> list = transferInputToIntegers(input);
 
         validDuplicate(list);
-
+        validListSizeIs3(list);
 
         return list;
+    }
+
+    private static void validListSizeIs3(List<Integer> list) {
+        if(list.size() != NUMBERS_LENGTH){
+            throw new IllegalArgumentException("3자리를 입력해야 합니다.");
+        }
     }
 
     private static List<Integer> transferInputToIntegers(String input) {
