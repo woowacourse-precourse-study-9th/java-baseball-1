@@ -24,22 +24,19 @@ public class BaseballController {
 
     public void run() {
 
-        Numbers answerNumbers = createAnswerNumbers();
 
-        gameStart(answerNumbers);
-
-
-    }
-
-    private void gameStart(Numbers answerNumbers) {
         JudgeTryAgain retry = new JudgeTryAgain();
 
         while(retry.oneMore()){
+            Numbers answerNumbers = createAnswerNumbers();
             attemptTo(answerNumbers);
             outputView.printRightAnswer();
             retry.checkTry(parseIntegers(inputView.readRestartRequest()));
         }
+
+
     }
+
 
     private void attemptTo(Numbers answerNumbers) {
 
