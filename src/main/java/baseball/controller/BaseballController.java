@@ -1,7 +1,7 @@
 package baseball.controller;
 
-import baseball.model.number.AnswerNumbers;
 import baseball.model.number.Numbers;
+import baseball.model.number.RandomIntegersGenerator;
 import baseball.view.InputView;
 import baseball.view.OutputView;
 
@@ -22,8 +22,10 @@ public class BaseballController {
 
     public void run() {
 
-        AnswerNumbers answerNumbers = createAnswerNumbers();
+        Numbers answerNumbers = createAnswerNumbers();
         Numbers numbers = createNumbers();
+
+
     }
 
     private Numbers createNumbers() {
@@ -34,10 +36,10 @@ public class BaseballController {
         return parseIntegers(inputView.readUserNumber());
     }
 
-    private AnswerNumbers createAnswerNumbers() {
+    private Numbers createAnswerNumbers() {
 
         outputView.printStart();
-        return new AnswerNumbers();
+        return new Numbers(new RandomIntegersGenerator().RandomIntegersGenerator());
 
     }
 }
