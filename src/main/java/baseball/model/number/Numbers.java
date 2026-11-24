@@ -6,6 +6,7 @@ import java.util.List;
 public class Numbers {
 
 
+    private static final int NUMBERS_LENGTH = 3;
     private final List<Number> numbers;
 
     public Numbers(List<Integer> numbers) {
@@ -15,9 +16,12 @@ public class Numbers {
     private List<Number> transferNumbers(List<Integer> numbers) {
         List<Number> numberList = new ArrayList<>();
 
+        validateNumber(numbers);
+
         for(int number :numbers ){
             numberList.add(new Number(number));
         }
+
         return numberList;
 
     }
@@ -72,4 +76,31 @@ public class Numbers {
     public List<Number> getNumbers() {
         return numbers;
     }
+
+
+    private void validateNumber(List<Integer> numbers) {
+        validListSizeIs3(numbers);
+        validDuplicate(numbers);
+    }
+
+
+
+    private void validListSizeIs3(List<Integer> list) {
+        if(list.size() != NUMBERS_LENGTH){
+            throw new IllegalArgumentException("3자리를 입력해야 합니다.");
+        }
+    }
+
+
+    private void validDuplicate(List<Integer> list) {
+
+        int size = (int) list.stream()
+                .distinct()
+                .count();
+
+        if(size != list.size()){
+            throw new IllegalArgumentException("숫자를 중복하여 입력했습니다.");
+        }
+    }
+
 }

@@ -11,17 +11,10 @@ public class StringParser {
 
         List<Integer> list = transferInputToIntegers(input);
 
-        validDuplicate(list);
-        validListSizeIs3(list);
 
         return list;
     }
 
-    private static void validListSizeIs3(List<Integer> list) {
-        if(list.size() != NUMBERS_LENGTH){
-            throw new IllegalArgumentException("3자리를 입력해야 합니다.");
-        }
-    }
 
     private static List<Integer> transferInputToIntegers(String input) {
         List<Integer> list = new ArrayList<>();
@@ -33,16 +26,7 @@ public class StringParser {
         return list;
     }
 
-    private static void validDuplicate(List<Integer> list) {
 
-        int size = (int) list.stream()
-                .distinct()
-                .count();
-
-        if(size != list.size()){
-            throw new IllegalArgumentException("숫자를 중복하여 입력했습니다.");
-        }
-    }
 
     private static int parseInteger(char c) {
 
@@ -52,16 +36,10 @@ public class StringParser {
 
         int number  = c - '0';
 
-        if(!isRange1to9(number)){
-            throw new IllegalArgumentException("입력 숫자는 1~9 사이여야 합니다.");
-        }
-
         return number;
     }
 
-    private static boolean isRange1to9(int number) {
-        return 0 < number && number < 10;
-    }
+
 
 
 }
