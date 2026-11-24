@@ -9,7 +9,7 @@ public class OutputView {
         System.out.println("숫자 야구 게임을 시작합니다.");
     }
 
-    public void printResult(Result result) {
+    public void printRoundResult(Result result) {
 
         if(result.isNothing()){
             System.out.print(Count.NONE.getKor());

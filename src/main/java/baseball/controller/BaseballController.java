@@ -27,9 +27,9 @@ public class BaseballController {
 
         JudgeTryAgain retry = new JudgeTryAgain();
 
-        while(retry.oneMore()){
+        while (retry.oneMore()) {
             Numbers answerNumbers = createAnswerNumbers();
-            attemptTo(answerNumbers);
+            playGame(answerNumbers);
             outputView.printRightAnswer();
             retry.checkTry(parseIntegers(inputView.readRestartRequest()));
         }
@@ -38,21 +38,22 @@ public class BaseballController {
     }
 
 
-    private void attemptTo(Numbers answerNumbers) {
+    private void playGame(Numbers answerNumbers) {
+
+        Result result;
+        do {
+
+            result = playRound(answerNumbers);
+            outputView.printRoundResult(result);
+
+        } while (!result.hasThreeStrike());
+
+    }
+
+    private Result playRound(Numbers answerNumbers) {
 
         Numbers numbers = createNumbers();
-        Result result = new Result(answerNumbers,numbers);
-        outputView.printResult(result);
-
-        while(!result.hasThreeStrike()){
-
-            numbers = createNumbers();
-            result = new Result(answerNumbers,numbers);
-
-            outputView.printResult(result);
-
-        }
-
+        return new Result(answerNumbers, numbers);
 
     }
 
