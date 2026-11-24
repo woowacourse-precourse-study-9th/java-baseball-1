@@ -8,6 +8,7 @@ import java.util.Map;
 
 public class Result {
 
+    public static final int GOAL_STRIKE = 3;
     private final Map<Count , Integer> map ;
 
     public Result(Numbers answerNumbers, Numbers numbers) {
@@ -59,6 +60,11 @@ public class Result {
 
     public Integer get(Count count) {
         return map.get(count);
+    }
+
+
+    public boolean hasThreeStrike() {
+        return map != null && map.getOrDefault(Count.STRIKE, 0) == GOAL_STRIKE;
     }
 
 

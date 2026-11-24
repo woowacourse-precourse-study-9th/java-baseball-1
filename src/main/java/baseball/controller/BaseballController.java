@@ -25,9 +25,31 @@ public class BaseballController {
 
         Numbers answerNumbers = createAnswerNumbers();
 
-        Numbers numbers = createNumbers();
-        Result result = new Result(answerNumbers,numbers);
-        outputView.printResult(result);
+        gameStart(answerNumbers);
+
+
+    }
+
+    private void gameStart(Numbers answerNumbers) {
+        boolean retry = true;
+
+        while(retry){
+            attemptTo(answerNumbers);
+            outputView.printRightAnswer();
+            String str = inputView.readRestartRequest();
+        }
+    }
+
+    private void attemptTo(Numbers answerNumbers) {
+        Result result = null;
+
+        while(result.hasThreeStrike()){
+
+            Numbers numbers = createNumbers();
+            result = new Result(answerNumbers,numbers);
+            outputView.printResult(result);
+
+        }
 
     }
 
