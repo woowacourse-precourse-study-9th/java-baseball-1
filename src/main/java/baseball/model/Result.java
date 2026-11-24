@@ -64,7 +64,7 @@ public class Result {
 
 
     public boolean hasThreeStrike() {
-        return map != null && map.getOrDefault(Count.STRIKE, 0) == GOAL_STRIKE;
+        return map.getOrDefault(Count.STRIKE, 0) == GOAL_STRIKE;
     }
 
 

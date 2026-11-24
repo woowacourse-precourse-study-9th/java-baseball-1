@@ -1,5 +1,6 @@
 package baseball.controller;
 
+import baseball.model.JudgeTryAgain;
 import baseball.model.Result;
 import baseball.model.number.Numbers;
 import baseball.model.number.RandomIntegersGenerator;
@@ -31,25 +32,30 @@ public class BaseballController {
     }
 
     private void gameStart(Numbers answerNumbers) {
-        boolean retry = true;
+        JudgeTryAgain retry = new JudgeTryAgain();
 
-        while(retry){
+        while(retry.oneMore()){
             attemptTo(answerNumbers);
             outputView.printRightAnswer();
-            String str = inputView.readRestartRequest();
+            retry.checkTry(parseIntegers(inputView.readRestartRequest()));
         }
     }
 
     private void attemptTo(Numbers answerNumbers) {
-        Result result = null;
 
-        while(result.hasThreeStrike()){
+        Numbers numbers = createNumbers();
+        Result result = new Result(answerNumbers,numbers);
+        outputView.printResult(result);
 
-            Numbers numbers = createNumbers();
+        while(!result.hasThreeStrike()){
+
+            numbers = createNumbers();
             result = new Result(answerNumbers,numbers);
+
             outputView.printResult(result);
 
         }
+
 
     }
 
