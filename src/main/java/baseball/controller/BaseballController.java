@@ -1,5 +1,6 @@
 package baseball.controller;
 
+import baseball.model.Result;
 import baseball.model.number.Numbers;
 import baseball.model.number.RandomIntegersGenerator;
 import baseball.view.InputView;
@@ -23,8 +24,10 @@ public class BaseballController {
     public void run() {
 
         Numbers answerNumbers = createAnswerNumbers();
-        Numbers numbers = createNumbers();
 
+        Numbers numbers = createNumbers();
+        Result result = new Result(answerNumbers,numbers);
+        outputView.printResult(result);
 
     }
 
