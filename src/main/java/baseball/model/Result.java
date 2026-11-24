@@ -16,7 +16,7 @@ public class Result {
 
 
         int strike = answerNumbers.countStrike(numbers);
-        int ball = answerNumbers.countBall(numbers) - strike;
+        int ball = answerNumbers.countBall(numbers);
 
         this.map = creatMap(strike,ball);
 
@@ -54,10 +54,6 @@ public class Result {
         return strike == 0 && ball == 0;
     }
 
-
-    public Map<Count, Integer> getMap() {
-        return map;
-    }
 
     public Integer get(Count count) {
         return map.get(count);

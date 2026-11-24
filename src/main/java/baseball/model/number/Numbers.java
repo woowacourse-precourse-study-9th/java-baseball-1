@@ -2,6 +2,7 @@ package baseball.model.number;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Numbers {
 
@@ -10,7 +11,7 @@ public class Numbers {
     private final List<Number> numbers;
 
     public Numbers(List<Integer> numbers) {
-        this.numbers =  transferNumbers(numbers);
+        this.numbers = transferNumbers(numbers);
     }
 
     private List<Number> transferNumbers(List<Integer> numbers) {
@@ -18,7 +19,7 @@ public class Numbers {
 
         validateNumber(numbers);
 
-        for(int number :numbers ){
+        for (int number : numbers) {
             numberList.add(new Number(number));
         }
 
@@ -28,54 +29,37 @@ public class Numbers {
 
 
     public int countStrike(Numbers others) {
-        int count = 0;
+        return (int) IntStream.range(0, NUMBERS_LENGTH)
+                .filter(index -> isSameNumberAndIndex(others, index))
+                .count();
+    }
 
-        for(int i=0;i<this.numbers.size();i++){
+    private boolean isSameNumberAndIndex(Numbers others, int index) {
 
-            Number myNumber = this.numbers.get(i);
-            Number otherNumber = others.numbers.get(i);
-            count += countIfSame(myNumber,otherNumber);
-
-        }
-        return  count;
+        return getNumber(index).isSame(others.getNumber(index));
 
     }
 
+    private Number getNumber(int index) {
+        return numbers.get(index);
+    }
 
 
     public int countBall(Numbers others) {
 
-        int count = 0;
-
-        for(int i=0;i<this.numbers.size();i++){
-
-            Number otherNumber = others.numbers.get(i);
-            count += countIfBall(otherNumber );
-
-        }
-        return  count;
+        return (int) IntStream.range(0,NUMBERS_LENGTH)
+                .filter(index -> isSameNumberNotSameIndex(others,index))
+                .count();
 
     }
 
-    private int countIfBall( Number otherNumber) {
-        int count =0;
-        for (Number number : this.numbers) {
-            count += countIfSame(number, otherNumber);
-        }
-        return count;
+    private boolean isSameNumberNotSameIndex(Numbers others, int index) {
+
+        return numbers.contains(others.getNumber(index)) && !isSameNumberAndIndex(others,index);
     }
 
-    private int countIfSame(Number myNumber,Number otherNumber) {
 
-        if(myNumber.isSame(otherNumber)){
-            return 1;
-        }
-        return 0;
-    }
 
-    public List<Number> getNumbers() {
-        return numbers;
-    }
 
 
     private void validateNumber(List<Integer> numbers) {
@@ -84,9 +68,8 @@ public class Numbers {
     }
 
 
-
     private void validListSizeIs3(List<Integer> list) {
-        if(list.size() != NUMBERS_LENGTH){
+        if (list.size() != NUMBERS_LENGTH) {
             throw new IllegalArgumentException("3자리를 입력해야 합니다.");
         }
     }
@@ -98,7 +81,7 @@ public class Numbers {
                 .distinct()
                 .count();
 
-        if(size != list.size()){
+        if (size != list.size()) {
             throw new IllegalArgumentException("숫자를 중복하여 입력했습니다.");
         }
     }

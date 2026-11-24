@@ -21,6 +21,8 @@ class ResultTest {
 
     @Test
     void 숫자만_같다면_볼() {
+
+
         Numbers answerNumbers = new Numbers(List.of(1, 2,3));
         Numbers numbers = new Numbers(List.of(2, 3, 1));
 
