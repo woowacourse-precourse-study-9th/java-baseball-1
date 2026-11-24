@@ -5,6 +5,7 @@ import baseball.model.number.Numbers;
 import java.util.EnumMap;
 
 import java.util.Map;
+import java.util.Set;
 
 public class Result {
 
@@ -68,4 +69,7 @@ public class Result {
     }
 
 
+    public Set<Count> getKeySet() {
+        return map.keySet();
+    }
 }

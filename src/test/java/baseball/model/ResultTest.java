@@ -18,4 +18,14 @@ class ResultTest {
         assertThat(result.get(Count.STRIKE)).isEqualTo(1);
         assertThat(result.get(Count.BALL)).isEqualTo(1);
     }
+
+    @Test
+    void 숫자만_같다면_볼() {
+        Numbers answerNumbers = new Numbers(List.of(1, 2,3));
+        Numbers numbers = new Numbers(List.of(2, 3, 1));
+
+        Result result = new Result(answerNumbers, numbers);
+
+        assertThat(result.get(Count.BALL)).isEqualTo(3);
+    }
 }

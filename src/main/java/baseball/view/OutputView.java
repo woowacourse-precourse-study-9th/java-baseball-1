@@ -2,8 +2,6 @@ package baseball.view;
 
 import baseball.model.Count;
 import baseball.model.Result;
-import baseball.model.number.Number;
-import baseball.model.number.Numbers;
 
 public class OutputView {
 
@@ -19,7 +17,7 @@ public class OutputView {
             return ;
         }
 
-        for(Count count : result.getMap().keySet()){
+        for(Count count : result.getKeySet()){
 
             System.out.print(result.get(count)+count.getKor()+" ");
 
