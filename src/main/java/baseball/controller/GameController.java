@@ -29,13 +29,24 @@ public class GameController {
         GameResult result;
 
         do {
-            outputView.printAskNumber();
-            BaseballNumbers userNumber = readUserNumberInput();
-            result = game.judge(userNumber);
-            outputView.printResult(result);
+            BaseballNumbers userNumber = readUserNumber();
+            result = judgedUserNumber(game, userNumber);
         } while (isPlaying(result));
 
         outputView.printEnd();
+    }
+
+    private GameResult judgedUserNumber(BaseballGame game, BaseballNumbers userNumber) {
+        GameResult result;
+        result = game.judge(userNumber);
+        outputView.printResult(result);
+        return result;
+    }
+
+    private BaseballNumbers readUserNumber() {
+        outputView.printAskNumber();
+        BaseballNumbers userNumber = readUserNumberInput();
+        return userNumber;
     }
 
     private boolean isPlaying(GameResult result) {
